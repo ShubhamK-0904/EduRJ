@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduTrack - Institutional Proposal | Presentation for Vice Principal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --ink: #f3f4f6;
+      --muted: #94a3b8;
+      --line: rgba(148,163,184,.16);
+      --accent: #63e6be;
+      --cyan: #67e8f9;
+      --emerald: #34d399;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: #080C14;
+      color: var(--ink);
+      overflow: hidden;
+      margin: 0;
+      height: 100vh;
+      width: 100vw;
+    }
+    button { font: inherit; }
+    button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+    header, footer { backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+    header { box-shadow: 0 8px 30px rgba(0,0,0,.24); }
+    main { position: relative; z-index: 1; height: calc(100vh - 3.5rem); margin-top: 3.5rem; min-height: 0; overflow: hidden; padding-top: 0 !important; }
+    
+    .slide {
+      display: none;
+      height: calc(100vh - 6.5rem);
+      min-height: 0;
+      width: 100vw;
+      padding: 1.25rem 3.5rem 1rem;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(99,230,190,.3) transparent;
+      animation: slideIn .22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .slide.active { display: flex; flex-direction: column; }
+    @keyframes slideIn { from { opacity: 0; transform: scale(.99) translateY(4px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+    .glass-card {
+      background: rgba(17, 24, 39, .72);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 1rem;
+      transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    }
+    .glass-card:hover {
+      border-color: rgba(99,230,190,.28);
+      box-shadow: 0 14px 32px rgba(0,0,0,.25);
+    }
+
+    .gradient-badge-emerald { background: linear-gradient(135deg, rgba(16,185,129,.18), rgba(16,185,129,.05)); border: 1px solid rgba(52,211,153,.35); }
+    .gradient-badge-cyan { background: linear-gradient(135deg, rgba(6,182,212,.18), rgba(6,182,212,.05)); border: 1px solid rgba(34,211,238,.35); }
+    .gradient-badge-amber { background: linear-gradient(135deg, rgba(245,158,11,.18), rgba(245,158,11,.05)); border: 1px solid rgba(251,191,36,.35); }
+    .gradient-badge-rose { background: linear-gradient(135deg, rgba(244,63,94,.18), rgba(244,63,94,.05)); border: 1px solid rgba(251,113,133,.35); }
+
+    /* Custom Presentation Role Components */
+    .eyebrow { font-size: 11px; letter-spacing: .18em; font-weight: 800; opacity: .75; text-transform: uppercase; }
+    .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 32px; align-items: center; }
+    .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
+    .metric-card, .dashboard-mock, .action-card { border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.045); border-radius: 16px; }
+    .metric-card { padding: 16px; }
+    .metric-card span, .metric-card small { display: block; opacity: .65; font-size: 11px; }
+    .metric-card strong { display: block; font-size: 28px; margin: 5px 0; }
+    .positive { color: #70e1b2 !important; }
+    
+    .dashboard-mock { padding: 20px; }
+    .mock-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,.08); padding-bottom: 8px; }
+    .mock-head span { opacity: .55; font-size: 11px; font-family: monospace; }
+    .subject-list div, .log-list div { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 12px; }
+    
+    .feature-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 20px; }
+    .feature-row div { padding: 10px; border-radius: 10px; background: rgba(255,255,255,.035); font-size: 11px; text-align: center; font-weight: 600; }
+    .defaulter-box { margin-top: 14px; padding: 14px; border-radius: 12px; background: rgba(255,120,100,.09); border: 1px solid rgba(255,120,100,.2); }
+    .defaulter-box span { display: block; font-size: 12px; opacity: .8; margin-top: 4px; }
+    
+    .ops-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 18px; }
+    .action-card { padding: 14px; text-align: left; }
+    .action-card b, .action-card small { display: block; }
+    .action-card b { font-size: 13px; color: #fff; }
+    .action-card small { opacity: .6; font-size: 11px; margin-top: 4px; line-height: 1.35; }
+    .action-card.wide { grid-column: 1 / -1; }
+
+    .staff-actions { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; margin: auto 0; }
+    .staff-action { min-height: 120px; display: flex; flex-direction: column; justify-content: space-between; padding: 16px; text-align: left; cursor: pointer; }
+    .staff-action.primary { grid-column: span 6; border-color: rgba(99,230,190,.35); background: linear-gradient(135deg, rgba(99,230,190,.12), rgba(255,255,255,.04)); }
+    .staff-action.secondary { grid-column: span 3; }
+    .staff-icon { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; background: rgba(255,255,255,.08); font-size: 18px; }
+    .staff-status { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+    .staff-status > div { padding: 12px 14px; border-left: 2px solid #63e6be; background: rgba(255,255,255,.04); border-radius: 0 10px 10px 0; }
+
+    .connection-orbit { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+    .connection-orbit span { padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); font-size: 11px; font-weight: 600; }
+    .chat-mock { padding: 18px; border-color: rgba(34,211,238,.25); background: linear-gradient(145deg, rgba(8,47,73,.55), rgba(17,24,39,.72)); border-radius: 16px; }
+    .message { padding: 10px 12px; border-radius: 10px; margin: 8px 0; background: rgba(255,255,255,.055); border-left: 3px solid #64748b; font-size: 12px; }
+    .message b { display: block; margin-bottom: 2px; font-size: 10px; }
+    .teacher-msg { border-left-color: #fbbf24; }
+    .staff-msg { border-left-color: #34d399; }
+    .student-msg { border-left-color: #22d3ee; }
+    .admin-msg { border-left-color: #fb7185; }
+    
+    .toast-stack { position: fixed; right: 20px; bottom: 64px; z-index: 90; display: grid; gap: 8px; width: min(340px, calc(100vw - 32px)); pointer-events: none; }
+    .toast { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border: 1px solid rgba(99,230,190,.3); border-radius: 10px; background: rgba(15,35,49,.95); box-shadow: 0 12px 30px rgba(0,0,0,.35); color: #d1fae5; font-size: 11px; animation: toastIn .22s ease both; }
+    .toast::before { content: "✓"; display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: rgba(99,230,190,.16); color: var(--accent); font-weight: 900; }
+    @keyframes toastIn { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+    @media (max-width: 900px) {
+      .slide { padding: 1rem 1.25rem .75rem; }
+      .hero-grid { grid-template-columns: 1fr; gap: 16px; }
+      .metric-grid { grid-template-columns: 1fr; }
+      .feature-row { grid-template-columns: repeat(3, 1fr); }
+      .staff-actions { grid-template-columns: 1fr; }
+      .staff-action.primary, .staff-action.secondary { grid-column: span 1; min-height: 80px; }
+    }
+
+    /* Mobile presentation mode: a compact, scrollable briefing surface. */
+    @media (max-width: 600px) {
+      :root { --mobile-gutter: 14px; }
+      body { background: #07151d; }
+      header { height: 3.5rem; padding: 0 var(--mobile-gutter); background: rgba(7,21,29,.94); border-color: rgba(99,230,190,.2); }
+      header > div:first-child { gap: 8px; min-width: 0; }
+      header > div:first-child > span:first-child { width: 7px; height: 7px; flex: 0 0 auto; }
+      header > div:first-child > span:nth-child(2) { font-size: 11px; letter-spacing: .14em; }
+      header > div:last-child { gap: 0; }
+      header > div:last-child > span:last-child { display: none; }
+      header > div:last-child > span:first-child { font-size: 10px; white-space: nowrap; color: #a7f3d0; }
+      main { margin-top: 3.5rem; padding-top: 0 !important; background: linear-gradient(180deg, #07151d 0%, #0a2029 48%, #07151d 100%); }
+      .slide { width: 100%; height: calc(100vh - 6.25rem); padding: 18px var(--mobile-gutter) 72px; overflow-y: auto; scroll-padding-bottom: 72px; scrollbar-width: none; }
+      .slide::-webkit-scrollbar { display: none; }
+      .slide.active { display: flex; justify-content: flex-start; gap: 16px; }
+      .slide.active::before { content: "EDUTRACK / MOBILE BRIEFING"; display: block; color: rgba(167,243,208,.62); font: 700 9px/1 monospace; letter-spacing: .18em; }
+      .slide > div:first-child { margin-bottom: 0; padding: 14px 0 16px 12px; border-left: 2px solid var(--accent); }
+      .slide > div:first-child .inline-flex { margin-bottom: 8px; padding: 5px 8px; font-size: 9px; letter-spacing: .12em; }
+      .slide h2 { margin-top: 2px; font-size: 1.45rem; line-height: 1.1; letter-spacing: -.01em; }
+      .slide h3 { font-size: 1rem; line-height: 1.2; }
+      .slide p, .slide li { font-size: 12px; line-height: 1.45; }
+      .slide .my-auto { margin-top: 0; margin-bottom: 0; }
+      .slide .grid, .slide .hero-grid, .slide .metric-grid, .slide .feature-row, .slide .ops-grid, .slide .staff-actions { grid-template-columns: 1fr; gap: 10px; }
+      .slide .grid-cols-12 { grid-template-columns: 1fr; }
+      .slide .grid-cols-12 > *, .slide .grid-cols-4 > *, .slide .grid-cols-3 > *, .slide .grid-cols-2 > * { grid-column: auto; }
+      .slide .glass-card, .slide .metric-card, .slide .dashboard-mock, .slide .action-card { border-radius: 14px; background: rgba(13,39,49,.88); box-shadow: 0 12px 26px rgba(0,0,0,.18); }
+      .slide .glass-card:hover { transform: none; }
+      .slide .glass-card, .slide .metric-card, .slide .dashboard-mock, .slide .action-card { padding: 14px; }
+      .slide .feature-row { margin-top: 0; }
+      .slide .feature-row div { min-height: 42px; display: flex; align-items: center; justify-content: flex-start; padding: 10px 12px; border-left: 2px solid rgba(103,232,249,.5); border-radius: 8px; background: rgba(103,232,249,.06); text-align: left; }
+      .slide .flex.items-start.justify-between { gap: 10px; }
+      .slide .flex.items-start.justify-between > div:first-child { flex-basis: 100%; }
+      .slide .flex.items-start.justify-between > button { width: 100%; margin-top: 0; min-height: 40px; }
+      .slide .flex.justify-between.items-center { align-items: center; }
+      .slide .flex.justify-between.items-center > button { width: auto; }
+      .slide .metric-grid { margin: 0; }
+      .slide .metric-card { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 12px; }
+      .slide .metric-card strong { grid-row: span 2; margin: 0; font-size: 1.5rem; color: var(--cyan); }
+      .slide .metric-card small { grid-column: 1; }
+      .slide .dashboard-mock { min-height: 0; }
+      .slide .mock-head { margin-bottom: 10px; }
+      .slide .subject-list div, .slide .log-list div { gap: 10px; padding: 9px 0; font-size: 11px; }
+      .slide .space-y-3 > div { gap: 8px; }
+      .slide .staff-action { min-height: 66px; flex-direction: row; align-items: center; gap: 10px; }
+      .slide .staff-action > span:nth-child(2) { flex: 1; }
+      .slide .staff-action > span:last-child { white-space: nowrap; }
+      .slide .staff-status { grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 0; }
+      .slide .staff-status > div { padding: 10px 8px; }
+      .slide .staff-status .text-xl { font-size: 14px; }
+      .slide[data-slide="1"] { justify-content: center; padding-top: 10px; }
+      .slide[data-slide="1"]::before { display: none; }
+      .slide[data-slide="1"] > div:first-child { display: none; }
+      .slide[data-slide="1"] h1 { font-size: clamp(2rem, 10vw, 2.8rem); line-height: .98; }
+      .slide[data-slide="1"] h1 br { display: none; }
+      .slide[data-slide="1"] p { margin-top: 14px; font-size: 13px; }
+      .slide[data-slide="1"] .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 22px; }
+      .slide[data-slide="1"] .glass-card { padding: 10px 6px; }
+      .slide[data-slide="1"] .glass-card > div:first-child { font-size: 15px; }
+      .slide[data-slide="1"] .glass-card > div:last-child { font-size: 9px; line-height: 1.2; }
+      .slide[data-slide="13"] > div:nth-child(2) { gap: 10px; }
+      .slide[data-slide="13"] > div:nth-child(2) > .glass-card { padding: 14px; }
+      .slide[data-slide="13"] h3 { font-size: 1.05rem; }
+      .slide[data-slide="13"] > div:last-child { gap: 8px; }
+      .slide[data-slide="13"] > div:last-child > div { padding: 12px 10px; }
+      .slide[data-slide="13"] > div:last-child .text-xl { font-size: 1rem; }
+      .slide[data-slide="16"] .decision-panel { width: 100%; }
+      .slide[data-slide="16"] .decision-panel button { width: 100%; min-height: 40px; }
+      footer { height: 2.75rem; padding: 0 10px; background: rgba(7,21,29,.96); border-color: rgba(99,230,190,.2); }
+      footer button { min-height: 34px; padding: 6px 9px; font-size: 10px; }
+      #dots-container { max-width: 30vw; gap: 4px; }
+      #dots-container button { flex: 0 0 auto; }
+      .toast-stack { right: 14px; bottom: 52px; width: calc(100vw - 28px); }
+      .overview-dialog { border-radius: 16px; }
+    }
+  </style>
+</head>
+<body class="select-none">
+
+  <!-- TOP STATUS BAR -->
+  <header class="fixed top-0 left-0 right-0 h-14 border-b border-gray-800/80 bg-gray-950/80 z-50 flex items-center justify-between px-6 md:px-8 text-xs">
+    <div class="flex items-center gap-3">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+      <span class="font-black text-sm tracking-wider text-emerald-400">EDUTRACK</span>
+      <span class="text-gray-500 font-mono hidden sm:inline">| Proposal for Vice Principal & Academic Dean</span>
+    </div>
+    <div class="flex items-center gap-4 text-gray-400 font-mono">
+      <span>Slide <span id="current-slide-num" class="text-white font-bold">1</span> of <span id="total-slides-num">20</span></span>
+    </div>
+  </header>
+
+  <!-- MAIN SLIDES CONTAINER -->
+  <main class="w-full h-full pt-14">
+
+    <!-- SLIDE 1: COVER & STRATEGIC VISION -->
+    <section class="slide active justify-center items-center text-center relative" data-slide="1">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-950/30 via-transparent to-transparent pointer-events-none"></div>
+      
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full gradient-badge-emerald text-emerald-400 text-xs font-bold tracking-widest uppercase mb-6">
+        <span>★</span> Departmental Implementation Proposal
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-black tracking-tight text-white max-w-5xl leading-tight">
+        EduTrack: Smart Campus Attendance & <br>
+        <span class="bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+          Academic Intelligence Platform
+        </span>
+      </h1>
+
+      <p class="text-base md:text-xl text-gray-400 max-w-3xl mt-6 font-normal leading-relaxed">
+        Eliminating proxy attendance, automating mandatory 75% university compliance, and returning <strong class="text-white">1,980+ instructional hours</strong> back to educators.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mt-10 max-w-3xl w-full">
+        <div class="glass-card p-4 text-center">
+          <div class="text-2xl font-black text-emerald-400">10 Seconds</div>
+          <div class="text-xs text-gray-400 mt-1">Full Classroom Scan</div>
+        </div>
+        <div class="glass-card p-4 text-center">
+          <div class="text-2xl font-black text-cyan-400">0% Proxy</div>
+          <div class="text-xs text-gray-400 mt-1">Dynamic Rolling QR</div>
+        </div>
+        <div class="glass-card p-4 text-center">
+          <div class="text-2xl font-black text-amber-400">₹75,000</div>
+          <div class="text-xs text-gray-400 mt-1">Full Dev + 1-Yr Cloud Cap</div>
+        </div>
+      </div>
+
+      <div class="mt-8 text-xs text-gray-500 font-mono">
+        Pilot Scope: 400 Students • 1 Department • Zero Dedicated Hardware Required
+      </div>
+    </section>
+
+    <!-- SLIDE 2: THE CURRENT PROBLEM & HIDDEN WASTAGE -->
+    <section class="slide justify-between" data-slide="2">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-rose text-rose-400 text-xs font-bold tracking-wider uppercase mb-2">
+          The Problem We Are Solving
+        </div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">The Hidden Cost of Paper Attendance Registers</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Every lecture period is burdened by structural friction that hurts academic delivery.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-auto">
+        <div class="glass-card p-5 border-rose-500/20 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-lg mb-3">⏱️</div>
+            <h3 class="text-sm font-bold text-white mb-2">15 Minutes Lost / Lecture</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">
+              Calling 60 roll numbers or circulating paper muster sheets wastes up to <strong>20% of instructional time</strong> every single day.
+            </p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-gray-800 text-[11px] text-rose-400 font-semibold">
+            = 220 Faculty Hours Lost / Month
+          </div>
+        </div>
+
+        <div class="glass-card p-5 border-amber-500/20 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg mb-3">⚠️</div>
+            <h3 class="text-sm font-bold text-white mb-2">Proxy Attendance</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">
+              Peers signing muster sheets or answering for absent classmates compromises genuine classroom presence and creates regulatory risk.
+            </p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-gray-800 text-[11px] text-amber-400 font-semibold">
+            Zero verifiable audit trail
+          </div>
+        </div>
+
+        <div class="glass-card p-5 border-indigo-500/20 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-lg mb-3">📊</div>
+            <h3 class="text-sm font-bold text-white mb-2">End-of-Term Excel Panic</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">
+              Class teachers spend <strong>2 to 3 weeks</strong> manually calculating attendance percentages to compile the university 75% defaulter list.
+            </p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-gray-800 text-[11px] text-indigo-400 font-semibold">
+            Late discovery of at-risk students
+          </div>
+        </div>
+
+        <div class="glass-card p-5 border-cyan-500/20 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-lg mb-3">📶</div>
+            <h3 class="text-sm font-bold text-white mb-2">Network Blackouts in Labs</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">
+              Standard online portals fail when cellular signals drop in basement workshops and concrete laboratories.
+            </p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-gray-800 text-[11px] text-cyan-400 font-semibold">
+            Classroom flow gets completely blocked
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-900/60 border border-gray-800 p-4 rounded-xl flex items-center justify-between text-xs">
+        <span class="text-gray-400">Institutional Reality: Our college wastes over <strong class="text-white">₹2,88,000 annually</strong> in lost teaching bandwidth, paper records, and manual reconciliation.</span>
+        <span class="text-rose-400 font-bold uppercase tracking-wider">Unnecessary Resource Drain</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CORE ARCHITECTURE & ANTI-PROXY ENGINE -->
+    <section class="slide justify-between" data-slide="3">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-emerald text-emerald-400 text-xs font-bold tracking-wider uppercase mb-2">
+          Anti-Cheat Technology
+        </div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">How EduTrack Works: 10-Second Anti-Proxy Flow</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Zero dedicated hardware. Completely frictionless for teachers and students.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+        <div class="glass-card p-6">
+          <div class="text-xs font-mono text-emerald-400 font-bold uppercase mb-2">STEP 01: FACULTY VIEW</div>
+          <h3 class="text-base font-bold text-white mb-3">1-Tap Rolling QR Generation</h3>
+          <p class="text-xs text-gray-400 leading-relaxed mb-4">
+            Faculty taps <strong>"Start Session"</strong>. The app creates a cryptographic rolling QR code that changes every 4 seconds.
+          </p>
+          <div class="p-3 bg-gray-950/70 rounded-lg border border-gray-800 text-[11px] text-emerald-400 font-mono">
+            🛡️ Screenshots forwarded on WhatsApp expire before arrival.
+          </div>
+        </div>
+
+        <div class="glass-card p-6">
+          <div class="text-xs font-mono text-cyan-400 font-bold uppercase mb-2">STEP 02: STUDENT SCAN</div>
+          <h3 class="text-base font-bold text-white mb-3">Sub-Second Camera Scan</h3>
+          <p class="text-xs text-gray-400 leading-relaxed mb-4">
+            Students scan the projector or faculty phone. The app checks roll number, session token, device ID, and timestamp instantly.
+          </p>
+          <div class="p-3 bg-gray-950/70 rounded-lg border border-gray-800 text-[11px] text-cyan-400 font-mono">
+            ⚡ 60+ students authenticate their attendance in under 10 seconds.
+          </div>
+        </div>
+
+        <div class="glass-card p-6">
+          <div class="text-xs font-mono text-indigo-400 font-bold uppercase mb-2">STEP 03: INSTANT VERIFICATION</div>
+          <h3 class="text-base font-bold text-white mb-3">Immutable Audit Records</h3>
+          <p class="text-xs text-gray-400 leading-relaxed mb-4">
+            Attendance is permanently sealed. Any manual administrative override requires a reason, leaving an immutable audit trail.
+          </p>
+          <div class="p-3 bg-gray-950/70 rounded-lg border border-gray-800 text-[11px] text-indigo-400 font-mono">
+            🔒 100% tamper-proof records ready for university scrutiny.
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+        <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
+          ✓ Runs on all standard Android phones (No biometric reader queues)
+        </div>
+        <div class="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">
+          ✓ Zero classroom wiring, power outlets or wall fixtures required
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: FOUR ROLE OVERVIEW -->
+    <section class="slide justify-between" data-slide="4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-emerald text-emerald-400 text-xs font-bold tracking-wider uppercase mb-2">
+          Integrated Platform
+        </div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">Four Roles. One Unified EduTrack Platform.</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Each role receives tailored interfaces and permissions while operating on one shared data core.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-auto">
+        <div class="glass-card p-5 border-cyan-500/20">
+          <div class="text-cyan-400 text-3xl mb-2">🎓</div>
+          <div class="text-xs font-mono text-cyan-400 font-bold uppercase">ROLE 01</div>
+          <h3 class="text-lg font-bold text-white mt-1">Student</h3>
+          <p class="text-xs text-gray-400 mt-2 leading-relaxed">Live 75% target gauge, upcoming lectures, spot quizzes, grade marks, announcements, and peer/teacher chat.</p>
+        </div>
+
+        <div class="glass-card p-5 border-emerald-500/20">
+          <div class="text-emerald-400 text-3xl mb-2">👨‍🏫</div>
+          <div class="text-xs font-mono text-emerald-400 font-bold uppercase">ROLE 02</div>
+          <h3 class="text-lg font-bold text-white mt-1">Teacher</h3>
+          <p class="text-xs text-gray-400 mt-2 leading-relaxed">Launch lectures, rolling QR broadcasts, syllabus velocity, calendar heatmaps, and instant defaulter intervention.</p>
+        </div>
+
+        <div class="glass-card p-5 border-amber-500/20">
+          <div class="text-amber-400 text-3xl mb-2">🗂️</div>
+          <div class="text-xs font-mono text-amber-400 font-bold uppercase">ROLE 03</div>
+          <h3 class="text-lg font-bold text-white mt-1">Staff</h3>
+          <p class="text-xs text-gray-400 mt-2 leading-relaxed">Manage schedules, scan student IDs for practical labs, export reports to Excel, and broadcast circular notices.</p>
+        </div>
+
+        <div class="glass-card p-5 border-rose-500/20">
+          <div class="text-rose-400 text-3xl mb-2">🛡️</div>
+          <div class="text-xs font-mono text-rose-400 font-bold uppercase">ROLE 04</div>
+          <h3 class="text-lg font-bold text-white mt-1">Vice Principal / Admin</h3>
+          <p class="text-xs text-gray-400 mt-2 leading-relaxed">Institution-wide analytics, defaulter radars, audit logs, faculty session compliance, and governance oversight.</p>
+        </div>
+      </div>
+
+      <div class="glass-card p-4 flex items-center justify-between text-xs">
+        <span class="text-gray-300"><strong>Shared Core:</strong> Secure authentication, encrypted attendance records, lecture timetables, and automated cloud sync.</span>
+        <span class="text-emerald-400 font-mono font-bold">4 ROLES · 1 REPOSITORY</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: STUDENT EXPERIENCE -->
+    <section class="slide justify-between" data-slide="5">
+      <div class="flex items-start justify-between gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-cyan text-cyan-400 text-xs font-bold tracking-wider uppercase mb-2">Student Portal</div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white">Student: Daily Cockpit for Attendance & Compliance</h2>
+          <p class="text-gray-400 text-xs md:text-sm mt-1">Transforms compliance from a scary end-of-term surprise into a transparent daily habit.</p>
+        </div>
+        <button onclick="goToSlide(6)" class="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-700 text-xs font-bold text-gray-300 hover:text-white">Next: Teacher →</button>
+      </div>
+
+      <div class="grid grid-cols-12 gap-4 my-auto">
+        <div class="col-span-12 md:col-span-4 glass-card p-5 border-cyan-500/30">
+          <div class="flex justify-between items-center"><span class="text-xs text-gray-400">Current Standing</span><span class="text-xs text-emerald-400 font-bold">Above 75% Target</span></div>
+          <div class="flex items-center gap-4 mt-4">
+            <div class="relative w-24 h-24 rounded-full flex items-center justify-center" style="background:conic-gradient(#22d3ee 0 76%, #1f2937 76% 100%)">
+              <div class="w-16 h-16 rounded-full bg-gray-950 flex items-center justify-center text-xl font-black text-white">76%</div>
+            </div>
+            <div class="text-xs text-gray-400 space-y-1.5">
+              <div>Attended: <b class="text-white">114</b></div>
+              <div>Missed: <b class="text-white">36</b></div>
+              <div>Req: <b class="text-emerald-400">75% (Safe)</b></div>
+            </div>
+          </div>
+          <div class="mt-4 p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-[11px] text-amber-300">
+            ⚠ Warning: Python attendance is at 74% (1 class away from target).
+          </div>
+        </div>
+
+        <div class="col-span-12 md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="glass-card p-4">
+            <div class="text-xs text-gray-500 uppercase">Upcoming Today</div>
+            <div class="mt-2.5 space-y-2 text-xs">
+              <div class="flex justify-between p-2 rounded bg-gray-900"><span>10:00 · Data Structures</span><span class="text-cyan-400 font-mono">Room 204</span></div>
+              <div class="flex justify-between p-2 rounded bg-gray-900"><span>12:00 · Database Systems</span><span class="text-emerald-400 font-mono">Lab 2</span></div>
+              <div class="flex justify-between p-2 rounded bg-gray-900"><span>14:00 · Python Programming</span><span class="text-amber-400 font-mono">Room 101</span></div>
+            </div>
+          </div>
+
+          <div class="glass-card p-4">
+            <div class="text-xs text-gray-500 uppercase">Academic Knowledge Checks</div>
+            <div class="grid grid-cols-2 gap-3 mt-2.5">
+              <div class="p-3 rounded-lg bg-emerald-500/10">
+                <div class="text-xl font-black text-emerald-400">82%</div>
+                <div class="text-[10px] text-gray-400">Spot Quiz Avg</div>
+              </div>
+              <div class="p-3 rounded-lg bg-indigo-500/10">
+                <div class="text-xl font-black text-indigo-400">A-</div>
+                <div class="text-[10px] text-gray-400">Continuous Assessment</div>
+              </div>
+            </div>
+            <div class="text-[11px] text-gray-500 mt-3">Quizzes automatically link to lecture attendance records.</div>
+          </div>
+
+          <div class="sm:col-span-2 glass-card p-4">
+            <div class="text-xs text-gray-500 uppercase mb-2">Subject-Wise Attendance Distribution</div>
+            <div class="grid grid-cols-4 gap-3 text-xs">
+              <div><div class="flex justify-between"><span>DS</span><b class="text-emerald-400">88%</b></div><div class="h-1.5 bg-gray-800 rounded-full mt-1"><div class="h-1.5 bg-emerald-400 rounded-full" style="width:88%"></div></div></div>
+              <div><div class="flex justify-between"><span>DBMS</span><b class="text-cyan-400">79%</b></div><div class="h-1.5 bg-gray-800 rounded-full mt-1"><div class="h-1.5 bg-cyan-400 rounded-full" style="width:79%"></div></div></div>
+              <div><div class="flex justify-between"><span>Python</span><b class="text-amber-400">74%</b></div><div class="h-1.5 bg-gray-800 rounded-full mt-1"><div class="h-1.5 bg-amber-400 rounded-full" style="width:74%"></div></div></div>
+              <div><div class="flex justify-between"><span>OS</span><b class="text-emerald-400">91%</b></div><div class="h-1.5 bg-gray-800 rounded-full mt-1"><div class="h-1.5 bg-emerald-400 rounded-full" style="width:91%"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3 text-xs">
+        <div class="glass-card p-2.5"><b class="text-cyan-400">📣 Notice Board:</b><span class="text-gray-400 ml-1">Live circulars & event updates.</span></div>
+        <div class="glass-card p-2.5"><b class="text-emerald-400">✓ Past Classes:</b><span class="text-gray-400 ml-1">Filterable lecture history with timestamps.</span></div>
+        <div class="glass-card p-2.5"><b class="text-indigo-400">💬 Query Thread:</b><span class="text-gray-400 ml-1">Direct inquiries with class teacher.</span></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: TEACHER EXPERIENCE -->
+    <section class="slide justify-between" data-slide="6">
+      <div class="flex items-start justify-between gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-amber text-amber-400 text-xs font-bold tracking-wider uppercase mb-2">Faculty Console</div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white">Teacher: Catch Attendance Risk Before It Becomes Defaulters</h2>
+          <p class="text-gray-400 text-xs md:text-sm mt-1">Real-time charts, calendar logs, and histogram views provide immediate pedagogical clarity.</p>
+        </div>
+        <button onclick="goToSlide(7)" class="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-700 text-xs font-bold text-gray-300 hover:text-white">Next: Staff →</button>
+      </div>
+
+      <div class="grid grid-cols-12 gap-4 my-auto">
+        <div class="col-span-12 md:col-span-3 space-y-3">
+          <div class="glass-card p-4">
+            <div class="text-xs text-gray-500">CLASSROOM AVERAGE</div>
+            <div class="text-3xl font-black text-amber-400 mt-1">78.4%</div>
+            <div class="text-[10px] text-gray-500">+3.2% vs last month</div>
+          </div>
+          <div class="glass-card p-4 border-rose-500/30">
+            <div class="text-xs text-gray-500">BELOW 75% DEFAULTERS</div>
+            <div class="text-3xl font-black text-rose-400 mt-1">12</div>
+            <button onclick="previewNoticeModal()" class="mt-2 text-[10px] text-rose-300 underline font-semibold">Inspect 12 Defaulters</button>
+          </div>
+          <div class="glass-card p-4">
+            <div class="text-xs text-gray-500">CLASSES CONDUCTED</div>
+            <div class="text-3xl font-black text-emerald-400 mt-1">42</div>
+            <div class="text-[10px] text-gray-500">100% syllabus logged</div>
+          </div>
+        </div>
+
+        <div class="col-span-12 md:col-span-9 glass-card p-5">
+          <div class="flex justify-between items-center mb-3">
+            <div class="text-xs font-bold text-white uppercase tracking-wider">Attendance Trajectory</div>
+            <div class="flex gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">Week-over-Week</span>
+            </div>
+          </div>
+          
+          <!-- Interactive Trend Chart Mock -->
+          <div class="h-32 flex items-end gap-3 border-b border-gray-800 px-2 pb-2">
+            <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-cyan-500/50 rounded-t" style="height:60px"></div><span class="text-[9px] text-gray-500">W1</span></div>
+            <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-cyan-500/50 rounded-t" style="height:78px"></div><span class="text-[9px] text-gray-500">W2</span></div>
+            <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-cyan-500/50 rounded-t" style="height:72px"></div><span class="text-[9px] text-gray-500">W3</span></div>
+            <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-emerald-500/60 rounded-t" style="height:92px"></div><span class="text-[9px] text-gray-500">W4</span></div>
+            <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-emerald-500/60 rounded-t" style="height:86px"></div><span class="text-[9px] text-gray-500">W5</span></div>
+            <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-emerald-500/60 rounded-t" style="height:102px"></div><span class="text-[9px] text-gray-500">W6</span></div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 mt-3 text-xs">
+            <div>
+              <div class="text-[10px] text-gray-500 uppercase mb-1">Calendar Heatmap</div>
+              <div class="text-gray-400 text-[11px]">Identifies specific days with irregular dropouts (e.g. post-holiday Mondays).</div>
+            </div>
+            <div>
+              <div class="text-[10px] text-gray-500 uppercase mb-1">Defaulter Distribution</div>
+              <div class="text-gray-400 text-[11px]">12 students currently under 75% are clustered in Roll Nos 102–128.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-xs">
+        <div><b class="text-rose-300">Automated Defaulter Warning:</b> EduTrack highlights vulnerable students 4 weeks before exams.</div>
+        <button onclick="demoToast('Notice sent to 12 defaulters & their mentors')" class="px-3 py-1.5 rounded-lg bg-rose-500/20 text-rose-200 font-bold hover:bg-rose-500/30">Send 1-Click Alert</button>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: STAFF EXPERIENCE -->
+    <section class="slide justify-between" data-slide="7">
+      <div class="flex items-start justify-between gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-emerald text-emerald-400 text-xs font-bold tracking-wider uppercase mb-2">Staff Operations</div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white">Staff: Keep Academic Administration Moving</h2>
+          <p class="text-gray-400 text-xs md:text-sm mt-1">A focused workspace for the three tasks lab assistants and clerical staff repeat daily.</p>
+        </div>
+        <button onclick="goToSlide(8)" class="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-700 text-xs font-bold text-gray-300 hover:text-white">Next: Admin →</button>
+      </div>
+
+      <div class="staff-actions">
+        <div onclick="demoToast('Timetable scheduler opened')" class="glass-card staff-action primary">
+          <span class="staff-icon">＋</span>
+          <span><b class="text-base text-white">1. Prepare Timetable</b><br><small>Configure lecture rooms, batches, and faculty slots before the day starts.</small></span>
+          <span class="text-[10px] font-mono text-emerald-300">STEP 1 · PLAN</span>
+        </div>
+        <div onclick="demoToast('Lab ID Scanner active')" class="glass-card staff-action primary">
+          <span class="staff-icon">▣</span>
+          <span><b class="text-base text-white">2. Lab & Exam Scanning</b><br><small>Scan student IDs directly for practical sessions and exam hall entry.</small></span>
+          <span class="text-[10px] font-mono text-cyan-300">STEP 2 · VERIFY</span>
+        </div>
+        <div onclick="demoToast('Excel muster exported')" class="glass-card staff-action secondary">
+          <span class="staff-icon">▤</span>
+          <span><b class="text-sm text-white">3. Generate Musters</b><br><small>Export official university-format Excel/PDF sheets.</small></span>
+        </div>
+        <div onclick="demoToast('Broadcast dialog opened')" class="glass-card staff-action secondary">
+          <span class="staff-icon">⌁</span>
+          <span><b class="text-sm text-white">4. Broadcast Circulars</b><br><small>Publish lab updates and emergency room changes.</small></span>
+        </div>
+      </div>
+
+      <div class="staff-status">
+        <div>
+          <div class="text-[10px] text-gray-500 uppercase">Today's Lab Scans</div>
+          <div class="text-xl font-black text-white mt-1">148 Records</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-gray-500 uppercase">Compiled Musters</div>
+          <div class="text-xl font-black text-emerald-400 mt-1">7 Formats Ready</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-gray-500 uppercase">Cloud Sync State</div>
+          <div class="text-xl font-black text-cyan-400 mt-1">100% Synced</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: ADMIN & VP EXPERIENCE -->
+    <section class="slide justify-between" data-slide="8">
+      <div class="flex items-start justify-between gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-rose text-rose-400 text-xs font-bold tracking-wider uppercase mb-2">VP & Admin Command Center</div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white">Vice Principal: Real-Time Institutional Oversight</h2>
+          <p class="text-gray-400 text-xs md:text-sm mt-1">Complete departmental oversight without waiting for paper reports to be hand-delivered.</p>
+        </div>
+        <button onclick="goToSlide(9)" class="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-700 text-xs font-bold text-gray-300 hover:text-white">Next: Chat →</button>
+      </div>
+
+      <div class="grid grid-cols-12 gap-4 my-auto">
+        <div class="col-span-12 md:col-span-8 glass-card p-5">
+          <div class="flex justify-between items-center mb-3">
+            <div class="text-xs font-bold text-white uppercase tracking-wider">Live Departmental Audit Stream</div>
+            <div class="flex gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 text-[9px]">STUDENT</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 text-[9px]">TEACHER</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 text-[9px]">STAFF</span>
+            </div>
+          </div>
+          <div class="space-y-2 text-[11px] font-mono">
+            <div class="flex gap-2 p-2 rounded bg-gray-900"><span class="text-gray-600">09:02:14</span><span class="text-cyan-300">STUDENT</span><span class="text-gray-400">ATTENDANCE_SCAN · Roll 104 · OS Class · PRESENT</span></div>
+            <div class="flex gap-2 p-2 rounded bg-gray-900"><span class="text-gray-600">09:00:02</span><span class="text-amber-300">TEACHER</span><span class="text-gray-400">SESSION_START · Prof. S. Sharma · QR Token 0x8f2c</span></div>
+            <div class="flex gap-2 p-2 rounded bg-gray-900"><span class="text-gray-600">08:45:10</span><span class="text-emerald-300">STAFF</span><span class="text-gray-400">ROSTER_SYNC · Batch A 2026 · 60 Students Verified</span></div>
+            <div class="flex gap-2 p-2 rounded bg-gray-900"><span class="text-gray-600">Yesterday</span><span class="text-rose-300">ADMIN</span><span class="text-gray-400">MANUAL_OVERRIDE · Roll 118 marked Medical Leave by HOD</span></div>
+          </div>
+        </div>
+
+        <div class="col-span-12 md:col-span-4 space-y-3">
+          <div class="glass-card p-4">
+            <div class="text-xs text-gray-500">FACULTY SESSION ADHERENCE</div>
+            <div class="text-3xl font-black text-emerald-400 mt-1">98.2%</div>
+            <div class="text-[10px] text-gray-500">42 of 42 scheduled lectures logged on time</div>
+          </div>
+          <div class="glass-card p-4">
+            <div class="text-xs text-gray-500">CROSS-DEPARTMENT AVERAGE</div>
+            <div class="text-3xl font-black text-cyan-400 mt-1">79.1%</div>
+            <div class="text-[10px] text-gray-500">Computer & IT Engineering</div>
+          </div>
+          <div class="glass-card p-4 border-emerald-500/30">
+            <div class="flex justify-between items-center">
+              <div>
+                <div class="text-xs text-gray-500">CLOUD INTEGRITY</div>
+                <div class="text-xl font-black text-emerald-400 mt-0.5">PostgreSQL Sealed</div>
+              </div>
+              <span class="text-xs font-mono text-emerald-300">SYNC: 100%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-4 gap-3 text-xs">
+        <div class="glass-card p-3"><b class="text-white">Full Transparency</b><div class="text-gray-500 mt-0.5">Audit every manual mark change.</div></div>
+        <div class="glass-card p-3"><b class="text-white">NAAC Ready</b><div class="text-gray-500 mt-0.5">Digital logs meet NIRF & NAAC audits.</div></div>
+        <div class="glass-card p-3"><b class="text-white">Direct Circulars</b><div class="text-gray-500 mt-0.5">Issue notices straight from the VP deck.</div></div>
+        <div class="glass-card p-3"><b class="text-white">Zero Clutter</b><div class="text-gray-500 mt-0.5">No paper muster shelves in the office.</div></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: CONNECTED CAMPUS CHAT -->
+    <section class="slide justify-between" data-slide="9">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-cyan text-cyan-400 text-xs font-bold tracking-wider uppercase mb-2">Connected Campus</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">Closed-Loop Academic Communication</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Keep attendance queries, leave verifications, and academic follow-ups in one auditable channel.</p>
+      </div>
+
+      <div class="hero-grid my-auto">
+        <div>
+          <h3 class="text-xl font-bold text-white mb-2">Replace Messy WhatsApp Groups</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Faculty often receive student queries across private chats where records are lost. EduTrack's role-based channel keeps all interactions academic, accountable, and attached to attendance IDs.
+          </p>
+          <div class="connection-orbit">
+            <span>Student · Raises query</span>
+            <span>Teacher · Reviews session</span>
+            <span>Staff · Verifies log</span>
+            <span>VP / Admin · Inspects resolution</span>
+          </div>
+        </div>
+        <div class="chat-mock">
+          <div class="mock-head">
+            <div><b>Attendance Query Thread</b><div class="text-[10px] text-emerald-400 font-mono">● 4 Roles Online</div></div>
+            <span>Thread #104-CS</span>
+          </div>
+          <div class="message student-msg"><b>Student (Roll 104)</b><span>Respected Sir, I attended the OS lecture today but had to switch seats during scan.</span></div>
+          <div class="message teacher-msg"><b>Teacher (Prof. S. Sharma)</b><span>Checking log. Can staff verify if roll 104 was scanned in room 204?</span></div>
+          <div class="message staff-msg"><b>Staff (Lab Assistant)</b><span>Verified. Scan confirmed at 09:02:14 AM. Presence valid.</span></div>
+          <div class="message admin-msg"><b>HOD / Admin</b><span>Record reconciled. Audit trail preserved automatically.</span></div>
+        </div>
+      </div>
+
+      <div class="glass-card p-3 text-xs text-gray-400 flex justify-between items-center">
+        <span>🔒 Zero personal mobile numbers exposed to students. Complete institutional privacy protection.</span>
+        <span class="text-cyan-400 font-mono font-bold">Institutional Privacy</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: OFFLINE-FIRST RESILIENCE -->
+    <section class="slide justify-between" data-slide="10">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-cyan text-cyan-400 text-xs font-bold tracking-wider uppercase mb-2">Reliability Guarantee</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">Engineered for Campus Realities: 100% Offline-First</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Classrooms in basement labs with zero cell reception never stop EduTrack.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto">
+        <div class="glass-card p-6 flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-cyan-400 font-bold uppercase">On-Device Persistence</span>
+            <h3 class="text-lg font-bold text-white mt-1 mb-2">Local SQLite & Room Database Cache</h3>
+            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+              Unlike web portals that crash when Wi-Fi drops, EduTrack validates and saves attendance locally on the device instantly with zero network delay.
+            </p>
+            <ul class="space-y-2 text-xs text-gray-300">
+              <li class="flex items-center gap-2"><span class="text-emerald-400">●</span> Instant scan response even in airplane mode</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400">●</span> Teachers never wait for a web page to reload</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400">●</span> Encrypted local cache prevents tampering</li>
+            </ul>
+          </div>
+          <div class="mt-4 p-2.5 bg-gray-950/80 rounded-lg border border-gray-800 text-[11px] text-gray-400">
+            <strong>Architecture:</strong> Android Room DB (SQLite) + Jetpack DataStore
+          </div>
+        </div>
+
+        <div class="glass-card p-6 flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-emerald-400 font-bold uppercase">Autonomous Cloud Sync</span>
+            <h3 class="text-lg font-bold text-white mt-1 mb-2">Silent Background Sync Engine</h3>
+            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+              As soon as the teacher or student reconnects to campus Wi-Fi or 4G, EduTrack quietly synchronizes queued records with the central Supabase PostgreSQL server.
+            </p>
+            <ul class="space-y-2 text-xs text-gray-300">
+              <li class="flex items-center gap-2"><span class="text-cyan-400">●</span> Zero manual "Upload" or "Export" buttons needed</li>
+              <li class="flex items-center gap-2"><span class="text-cyan-400">●</span> Automated deduplication prevents double-counting</li>
+              <li class="flex items-center gap-2"><span class="text-cyan-400">●</span> Runs via native Android WorkManager routines</li>
+            </ul>
+          </div>
+          <div class="mt-4 p-2.5 bg-gray-950/80 rounded-lg border border-gray-800 text-[11px] text-gray-400">
+            <strong>Central Cloud:</strong> Supabase PostgreSQL + Row-Level Security
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card p-4 flex items-center justify-between text-xs">
+        <span class="text-gray-300"><strong>Faculty Guarantee:</strong> A lecture can never be delayed by server downtime or weak college internet.</span>
+        <span class="text-emerald-400 font-bold">100% Zero-Downtime Design</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: 75% DEFAULTER RADAR -->
+    <section class="slide justify-between" data-slide="11">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-amber text-amber-400 text-xs font-bold tracking-wider uppercase mb-2">Compliance Radar</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">Automated 75% Defaulter Radar & Parent Notices</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Transform attendance compliance from passive bookkeeping into proactive academic intervention.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+        <div class="glass-card p-5">
+          <div class="text-amber-400 text-2xl font-black mb-2">🎯 Early Intervention</div>
+          <h3 class="text-sm font-bold text-white mb-2">Week-3 Defaulter Radar</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            HODs and the Vice Principal see live percentages across all subjects. Identify struggling students at <strong>Week 3</strong> instead of discovering them in the final exam week.
+          </p>
+        </div>
+
+        <div class="glass-card p-5">
+          <div class="text-cyan-400 text-2xl font-black mb-2">📄 1-Click Notices</div>
+          <h3 class="text-sm font-bold text-white mb-2">Pre-Formatted Letters</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Generate official departmental notices and parent warning letters formatted for college letterhead in one click—eliminating tedious Excel compilation.
+          </p>
+        </div>
+
+        <div class="glass-card p-5">
+          <div class="text-emerald-400 text-2xl font-black mb-2">⚖️ Legal & University Proof</div>
+          <h3 class="text-sm font-bold text-white mb-2">Indisputable Evidence</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            If a parent or student challenges an exam bar, the college possesses cryptographic scan timestamps, IP, and session IDs proving absence.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-xl bg-gray-900/80 border border-gray-800 text-xs text-gray-300 flex justify-between items-center">
+        <span><strong>Vice Principal Executive Action:</strong> Preview how official defaulter lists look when generated by EduTrack.</span>
+        <button onclick="previewNoticeModal()" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-emerald-400 font-bold rounded-lg transition">
+          📄 Preview Official Defaulter Notice (PDF)
+        </button>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: SYLLABUS TRACKING & SPOT QUIZZES (NEW EXTENSION) -->
+    <section class="slide justify-between" data-slide="12">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-emerald text-emerald-400 text-xs font-bold tracking-wider uppercase mb-2">Academic Velocity</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">Continuous Knowledge Tracking & Syllabus Velocity</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Connecting attendance to actual curriculum progress and student comprehension.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+        <div class="glass-card p-5">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold mb-3">📈</div>
+          <h3 class="text-sm font-bold text-white mb-2">Syllabus Completion Pace</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Faculty log lecture topics in 5 seconds when initiating QR attendance. The system computes real-time syllabus completion curves for the Vice Principal.
+          </p>
+        </div>
+
+        <div class="glass-card p-5">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold mb-3">📝</div>
+          <h3 class="text-sm font-bold text-white mb-2">60-Second In-Class Spot Quizzes</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Faculty trigger a 2-question comprehension spot quiz at the end of class. Students answer on their devices, creating instant formative assessment records.
+          </p>
+        </div>
+
+        <div class="glass-card p-5">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold mb-3">📊</div>
+          <h3 class="text-sm font-bold text-white mb-2">Attendance vs Marks Correlation</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Automated correlation graphs prove whether irregular attendance directly drives lower internal marks, providing concrete data for parent meetings.
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-card p-4 flex items-center justify-between text-xs">
+        <span class="text-gray-300"><strong>Vice Principal Oversight:</strong> Identify ahead of time which faculty members are lagging behind their syllabus targets.</span>
+        <span class="text-emerald-400 font-bold">Data-Driven Dean Reviews</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: DATA PRIVACY & ACCREDITATION COMPLIANCE (NEW EXTENSION) -->
+    <section class="slide justify-between" data-slide="13">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-emerald text-emerald-400 text-xs font-bold tracking-wider uppercase mb-2">Governance & Security</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">Data Privacy, Role Security & NAAC Compliance</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Enterprise data isolation designed to satisfy strict university and accreditation audits.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-auto">
+        <div class="glass-card p-5">
+          <div class="text-xs font-mono text-cyan-400 font-bold">CRITERIA 1</div>
+          <h3 class="text-sm font-bold text-white mt-1">PostgreSQL RLS Security</h3>
+          <p class="text-xs text-gray-400 mt-2">Row-Level Security ensures students can strictly only view their own attendance records. Zero cross-student data leakage.</p>
+        </div>
+
+        <div class="glass-card p-5">
+          <div class="text-xs font-mono text-emerald-400 font-bold">CRITERIA 2</div>
+          <h3 class="text-sm font-bold text-white mt-1">Device Fingerprint Lock</h3>
+          <p class="text-xs text-gray-400 mt-2">Student accounts are bound to a verified hardware ID, preventing one student from carrying multiple phones to scan.</p>
+        </div>
+
+        <div class="glass-card p-5">
+          <div class="text-xs font-mono text-amber-400 font-bold">CRITERIA 3</div>
+          <h3 class="text-sm font-bold text-white mt-1">NAAC Criteria 2 & 6</h3>
+          <p class="text-xs text-gray-400 mt-2">Provides verifiable documentation for NAAC 2.1 (Student Enrolment/Profile) and 6.2 (e-Governance in Administration).</p>
+        </div>
+
+        <div class="glass-card p-5">
+          <div class="text-xs font-mono text-rose-400 font-bold">CRITERIA 4</div>
+          <h3 class="text-sm font-bold text-white mt-1">Institutional Ownership</h3>
+          <p class="text-xs text-gray-400 mt-2">All student data resides in college-controlled database instances. Never sold, mined, or shared with third-party advertisers.</p>
+        </div>
+      </div>
+
+      <div class="glass-card p-4 text-xs text-gray-400 flex items-center justify-between">
+        <span>🔐 End-to-end encrypted cryptographic tokens eliminate proxy scams while preserving full privacy.</span>
+        <span class="text-emerald-400 font-mono font-bold">Audit-Ready Institution</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: FINANCIAL PROPOSAL (₹75,000 BUDGET) -->
+    <section class="slide justify-between" data-slide="14">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-emerald text-emerald-400 text-xs font-bold tracking-wider uppercase mb-2">Commercial Proposal</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">Financial Evaluation: ₹75,000 Department Budget</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Transparent breakdown for development, cloud database capacity, and dedicated support.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+        <div class="glass-card p-5 border-emerald-500/20">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <span class="text-xs font-mono text-emerald-400 font-bold uppercase">Component A (One-Time)</span>
+              <h3 class="text-lg font-bold text-white mt-1">System Development</h3>
+            </div>
+            <span class="text-xl font-black text-emerald-400">₹45,000</span>
+          </div>
+          <div class="space-y-2 text-xs text-gray-300">
+            <div class="flex justify-between border-b border-gray-800 pb-1.5"><span>Cloud Architecture & RLS Security</span><span class="font-mono text-gray-400">₹10k</span></div>
+            <div class="flex justify-between border-b border-gray-800 pb-1.5"><span>Jetpack Compose UI & Dynamic QR</span><span class="font-mono text-gray-400">₹15k</span></div>
+            <div class="flex justify-between border-b border-gray-800 pb-1.5"><span>Offline Room DB & Defaulter Radar</span><span class="font-mono text-gray-400">₹12k</span></div>
+            <div class="flex justify-between border-b border-gray-800 pb-1.5"><span>Testing, Rollout & Faculty Training</span><span class="font-mono text-gray-400">₹8k</span></div>
+          </div>
+          <div class="mt-4 text-[11px] text-gray-400">★ Full-stack native Android implementation.</div>
+        </div>
+
+        <div class="glass-card p-5 border-cyan-500/20">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <span class="text-xs font-mono text-cyan-400 font-bold uppercase">Component B (1-Year Hosting)</span>
+              <h3 class="text-lg font-bold text-white mt-1">Supabase Database & Cloud</h3>
+            </div>
+            <span class="text-xl font-black text-cyan-400">₹25,000</span>
+          </div>
+          <div class="space-y-2 text-xs text-gray-300">
+            <div class="flex justify-between border-b border-gray-800 pb-1.5"><span>Supabase Production Cloud Database</span><span class="font-mono text-gray-400">₹25,000</span></div>
+            <div class="flex justify-between border-b border-gray-800 pb-1.5"><span>Bi-annual roster ingestion & updates</span><span class="font-mono text-gray-400">Included</span></div>
+            <div class="flex justify-between border-b border-gray-800 pb-1.5"><span>Automated daily off-site backups</span><span class="font-mono text-gray-400">Included</span></div>
+            <div class="flex justify-between border-b border-gray-800 pb-1.5"><span>System uptime monitoring & SLA</span><span class="font-mono text-gray-400">Included</span></div>
+          </div>
+          <div class="mt-4 text-[11px] text-gray-400">★ 12 months uninterrupted database SLA.</div>
+        </div>
+
+        <div class="glass-card p-5 border-amber-500/20">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <span class="text-xs font-mono text-amber-400 font-bold uppercase">Component C (Reserve)</span>
+              <h3 class="text-lg font-bold text-white mt-1">Bug Fixes & Stabilization</h3>
+            </div>
+            <span class="text-xl font-black text-amber-400">₹5,000</span>
+          </div>
+          <div class="space-y-2 text-xs text-gray-300">
+            <div class="flex justify-between border-b border-gray-800 pb-1.5"><span>Post-pilot priority bug patches</span><span class="font-mono text-gray-400">₹5,000</span></div>
+            <div class="flex justify-between border-b border-gray-800 pb-1.5"><span>New Android OS version compatibility</span><span class="font-mono text-gray-400">Included</span></div>
+            <div class="flex justify-between border-b border-gray-800 pb-1.5"><span>Faculty feature adjustments</span><span class="font-mono text-gray-400">Included</span></div>
+          </div>
+          <div class="mt-4 text-[11px] text-gray-400">★ Guarantees long-term stability after rollout.</div>
+        </div>
+      </div>
+
+      <div class="bg-gray-900 border border-emerald-500/40 p-4 rounded-xl flex justify-between items-center text-xs">
+        <div>
+          <span class="text-white font-bold">TOTAL SANCTIONED PILOT BUDGET: ₹75,000</span>
+          <span class="text-gray-400 ml-3 hidden sm:inline">(Covers ₹45k Dev + ₹25k 1-Year Cloud + ₹5k Stabilization Reserve)</span>
+        </div>
+        <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 font-bold rounded">Fixed-Price Commitment</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: ROI & COST COMPARISON -->
+    <section class="slide justify-between" data-slide="15">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-emerald text-emerald-400 text-xs font-bold tracking-wider uppercase mb-2">Return on Investment</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">Why EduTrack Saves ₹2,13,000 in Year 1 Alone</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Quantitative analysis comparing EduTrack against paper registers and biometric scanners.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+        <div class="glass-card p-5 border-rose-500/20">
+          <div class="text-rose-400 font-bold text-xs uppercase mb-1">STATUS QUO</div>
+          <h3 class="text-sm font-bold text-white mb-2">Paper Register System</h3>
+          <div class="text-2xl font-black text-rose-400 mb-3">₹2,88,000 / yr</div>
+          <ul class="text-xs text-gray-400 space-y-1.5">
+            <li>• ₹18,000/mo faculty roll call time lost</li>
+            <li>• ₹1,500/mo printing & stationery</li>
+            <li>• ₹4,500/mo manual Excel compilation</li>
+            <li>• Rampant proxy & zero audit validity</li>
+          </ul>
+        </div>
+
+        <div class="glass-card p-5 border-amber-500/20">
+          <div class="text-amber-400 font-bold text-xs uppercase mb-1">ALTERNATIVE</div>
+          <h3 class="text-sm font-bold text-white mb-2">Wall Biometrics (4 Rooms)</h3>
+          <div class="text-2xl font-black text-amber-400 mb-3">₹1,50,000+</div>
+          <ul class="text-xs text-gray-400 space-y-1.5">
+            <li>• High initial machine hardware Capex</li>
+            <li>• 15-minute entrance queues before class</li>
+            <li>• Recurring sensor maintenance & damage</li>
+            <li>• Zero defaulter radar or mobile app</li>
+          </ul>
+        </div>
+
+        <div class="glass-card p-5 border-emerald-500/30 bg-emerald-950/20">
+          <div class="text-emerald-400 font-bold text-xs uppercase mb-1">RECOMMENDED</div>
+          <h3 class="text-sm font-bold text-white mb-2">EduTrack Digital Platform</h3>
+          <div class="text-2xl font-black text-emerald-400 mb-3">₹75,000 Total</div>
+          <ul class="text-xs text-gray-300 space-y-1.5">
+            <li>• ₹0 hardware Capex (Uses existing phones)</li>
+            <li>• 10-second attendance (1,980 hrs saved)</li>
+            <li>• 75% defaulter radar & automated notices</li>
+            <li>• 1-Year cloud database included</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="glass-card p-3.5 text-center">
+          <div class="text-xs text-gray-400">Payback Period</div>
+          <div class="text-lg font-bold text-amber-400 mt-0.5">Month 2.6 (~10 Weeks)</div>
+        </div>
+        <div class="glass-card p-3.5 text-center">
+          <div class="text-xs text-gray-400">Year 1 Net Institutional Savings</div>
+          <div class="text-lg font-bold text-emerald-400 mt-0.5">₹2,13,000 Saved</div>
+        </div>
+        <div class="glass-card p-3.5 text-center">
+          <div class="text-xs text-gray-400">Year 2+ Ongoing Annual Savings</div>
+          <div class="text-lg font-bold text-cyan-400 mt-0.5">₹2,63,000 / Year</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 16: FAILURE MODES & RISK CONTROLS (NEW EXTENSION) -->
+    <section class="slide justify-between" data-slide="16">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-amber text-amber-400 text-xs font-bold tracking-wider uppercase mb-2">Risk Management</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">Failure Modes & Vice Principal Controls</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Every edge case has a defined institutional control and escalation path.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-auto">
+        <div class="glass-card p-4 border-amber-500/20">
+          <div class="flex items-center gap-2 text-amber-400 font-bold text-xs uppercase">
+            <span>⚠️</span> Student Phone Battery Died
+          </div>
+          <p class="text-xs text-gray-300 mt-2">
+            <strong>Control:</strong> Faculty or lab staff can tap "Manual Verify" on their own phone, select the student's roll number, and verify presence in 2 seconds.
+          </p>
+        </div>
+
+        <div class="glass-card p-4 border-cyan-500/20">
+          <div class="flex items-center gap-2 text-cyan-400 font-bold text-xs uppercase">
+            <span>📶</span> Total Campus Wi-Fi Outage
+          </div>
+          <p class="text-xs text-gray-300 mt-2">
+            <strong>Control:</strong> System switches automatically to local SQLite storage. All scans continue offline and sync silently when connection returns.
+          </p>
+        </div>
+
+        <div class="glass-card p-4 border-rose-500/20">
+          <div class="flex items-center gap-2 text-rose-400 font-bold text-xs uppercase">
+            <span>📸</span> Attempted Proxy via WhatsApp Photo
+          </div>
+          <p class="text-xs text-gray-300 mt-2">
+            <strong>Control:</strong> QR code refreshes every 4 seconds with cryptographic hashes. Photo sent by message expires before recipient can scan it.
+          </p>
+        </div>
+
+        <div class="glass-card p-4 border-emerald-500/20">
+          <div class="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase">
+            <span>⚖️</span> Disputed Defaulter Status
+          </div>
+          <p class="text-xs text-gray-300 mt-2">
+            <strong>Control:</strong> System produces an immutable event log with exact timestamps, lecture topic, and teacher ID, ending arbitrary disputes.
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-card p-3.5 text-xs text-gray-300 flex justify-between items-center">
+        <span><strong>Escalation Chain:</strong> Student → Faculty Member → Department Coordinator → Vice Principal.</span>
+        <span class="text-emerald-400 font-mono font-bold">100% Controlled Workflow</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 17: ATTENDANCE EVENT LIFECYCLE (RESTORED & ENHANCED) -->
+    <section class="slide justify-between" data-slide="17">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-cyan text-cyan-400 text-xs font-bold tracking-wider uppercase mb-2">System Internals</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">Attendance Event Lifecycle: 4 Cryptographic Steps</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Traceability from student camera focus to the Vice Principal's defaulter report.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 my-auto">
+        <div class="glass-card p-5 border-emerald-500/20">
+          <div class="text-xs font-mono text-emerald-400 font-bold">STEP 1</div>
+          <h3 class="text-base font-bold text-white mt-1">Capture</h3>
+          <p class="text-xs text-gray-400 mt-2 leading-relaxed">Dynamic QR broadcast generates rolling token containing subject ID, timestamp, and lecture code.</p>
+          <div class="mt-3 text-[10px] text-emerald-400 font-mono">0.05s generation</div>
+        </div>
+
+        <div class="glass-card p-5 border-cyan-500/20">
+          <div class="text-xs font-mono text-cyan-400 font-bold">STEP 2</div>
+          <h3 class="text-base font-bold text-white mt-1">Validate</h3>
+          <p class="text-xs text-gray-400 mt-2 leading-relaxed">ML Kit scanner checks student roll number, active batch, and device fingerprint validity.</p>
+          <div class="mt-3 text-[10px] text-cyan-400 font-mono">0.12s verification</div>
+        </div>
+
+        <div class="glass-card p-5 border-amber-500/20">
+          <div class="text-xs font-mono text-amber-400 font-bold">STEP 3</div>
+          <h3 class="text-base font-bold text-white mt-1">Local Seal</h3>
+          <p class="text-xs text-gray-400 mt-2 leading-relaxed">Record is encrypted and committed to local Android SQLite DB. Guaranteed zero loss even offline.</p>
+          <div class="mt-3 text-[10px] text-amber-400 font-mono">Instant disk commit</div>
+        </div>
+
+        <div class="glass-card p-5 border-indigo-500/20">
+          <div class="text-xs font-mono text-indigo-400 font-bold">STEP 4</div>
+          <h3 class="text-base font-bold text-white mt-1">Cloud Sync</h3>
+          <p class="text-xs text-gray-400 mt-2 leading-relaxed">PostgreSQL replication updates the live defaulter radar and executive dashboard for the Vice Principal.</p>
+          <div class="mt-3 text-[10px] text-indigo-400 font-mono">Background sync</div>
+        </div>
+      </div>
+
+      <div class="glass-card p-3.5 text-xs text-gray-400 flex justify-between items-center">
+        <span>✓ Zero manual data entry by teachers. Completely automated end-to-end.</span>
+        <span class="text-cyan-400 font-mono font-bold">Sub-Second Execution</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 18: ZERO-RISK PHASED PILOT ROADMAP -->
+    <section class="slide justify-between" data-slide="18">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-emerald text-emerald-400 text-xs font-bold tracking-wider uppercase mb-2">Implementation Roadmap</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">6-Week De-Risked Departmental Pilot Plan</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">We propose a smooth parallel transition that guarantees zero disruption to teaching.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-auto">
+        <div class="glass-card p-5">
+          <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-xs mb-3">W1</div>
+          <h3 class="text-sm font-bold text-white mb-2">Data Ingestion</h3>
+          <p class="text-xs text-gray-400">
+            Import existing department student rolls and faculty timetables straight from Excel. Zero re-typing.
+          </p>
+        </div>
+
+        <div class="glass-card p-5">
+          <div class="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-400 font-bold flex items-center justify-center text-xs mb-3">W2</div>
+          <h3 class="text-sm font-bold text-white mb-2">Faculty Workshop</h3>
+          <p class="text-xs text-gray-400">
+            One 45-minute hands-on orientation for department teachers and lab assistants with direct assistance.
+          </p>
+        </div>
+
+        <div class="glass-card p-5 border-amber-500/30">
+          <div class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center text-xs mb-3">W3-5</div>
+          <h3 class="text-sm font-bold text-white mb-2">3-Week Parallel Run</h3>
+          <p class="text-xs text-gray-400">
+            EduTrack operates <strong>alongside the paper register</strong>. Faculty verify attendance matches 100% with zero academic risk.
+          </p>
+        </div>
+
+        <div class="glass-card p-5 border-emerald-500/30">
+          <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-xs mb-3">W6+</div>
+          <h3 class="text-sm font-bold text-white mb-2">Full Digital Handover</h3>
+          <p class="text-xs text-gray-400">
+            Paper registers retired. Automated weekly cloud backups and 1-click administrative defaulter notices activated.
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-card p-4 flex items-center justify-between text-xs">
+        <span class="text-gray-300"><strong>Safety Clause:</strong> If the department is not 100% satisfied during the parallel run, all data exports to Excel with zero interruption.</span>
+        <span class="text-amber-400 font-semibold font-mono">100% Risk-Free Commitment</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 19: PILOT SUCCESS METRICS & KPIS (NEW EXTENSION) -->
+    <section class="slide justify-between" data-slide="19">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-emerald text-emerald-400 text-xs font-bold tracking-wider uppercase mb-2">Evaluation Metrics</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">How the Vice Principal Will Judge Pilot Success</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">Clear, measurable metrics established before kickoff to ensure objective evaluation.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-auto">
+        <div class="glass-card p-5 text-center">
+          <div class="text-3xl font-black text-emerald-400 mb-1">&lt;10s</div>
+          <div class="text-sm font-bold text-white mb-2">Class Attendance Time</div>
+          <p class="text-xs text-gray-400">Attendance completed in under 10 seconds per lecture (down from 15 minutes).</p>
+        </div>
+
+        <div class="glass-card p-5 text-center">
+          <div class="text-3xl font-black text-cyan-400 mb-1">0%</div>
+          <div class="text-sm font-bold text-white mb-2">Proxy Rate</div>
+          <p class="text-xs text-gray-400">Zero proxy attendance claims verified throughout the 30-day pilot period.</p>
+        </div>
+
+        <div class="glass-card p-5 text-center">
+          <div class="text-3xl font-black text-amber-400 mb-1">100%</div>
+          <div class="text-sm font-bold text-white mb-2">Faculty Adoption</div>
+          <p class="text-xs text-gray-400">All 15 participating department teachers successfully launch sessions independently.</p>
+        </div>
+
+        <div class="glass-card p-5 text-center">
+          <div class="text-3xl font-black text-rose-400 mb-1">1-Click</div>
+          <div class="text-sm font-bold text-white mb-2">Defaulter Notice Gen</div>
+          <p class="text-xs text-gray-400">Instant PDF generation of the official 75% defaulter circular saving 20+ hours.</p>
+        </div>
+      </div>
+
+      <div class="glass-card p-4 flex items-center justify-between text-xs">
+        <span class="text-gray-300"><strong>Post-Pilot Review:</strong> A formal 1-page assessment submitted to the Vice Principal at the end of Day 30.</span>
+        <span class="text-emerald-400 font-mono font-bold">Data-Driven Pilot Review</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 20: THE ASK & EXECUTIVE DECISION -->
+    <section class="slide justify-between" data-slide="20">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gradient-badge-emerald text-emerald-400 text-xs font-bold tracking-wider uppercase mb-2">Conclusion & Executive Action</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">The Proposal for Vice Principal Sanction</h2>
+        <p class="text-gray-400 text-xs md:text-sm mt-1">A modern, paperless campus begins with a single successful departmental pilot.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+        <div class="glass-card p-5 border-emerald-500/30">
+          <h3 class="text-sm font-bold text-emerald-400 mb-2">For Faculty</h3>
+          <ul class="text-xs text-gray-300 space-y-1.5">
+            <li>✓ Recovers 15 minutes of prime teaching time per lecture</li>
+            <li>✓ Eliminates manual paper muster books</li>
+            <li>✓ 1-tap spot quizzes with instant automated marks</li>
+          </ul>
+        </div>
+
+        <div class="glass-card p-5 border-cyan-500/30">
+          <h3 class="text-sm font-bold text-cyan-400 mb-2">For the Vice Principal & Dean</h3>
+          <ul class="text-xs text-gray-300 space-y-1.5">
+            <li>✓ Live, real-time 75% defaulter radar across classes</li>
+            <li>✓ 1-click official notice generation for parents</li>
+            <li>✓ Zero proxy attendance with verifiable audit trails</li>
+          </ul>
+        </div>
+
+        <div class="glass-card p-5 border-indigo-500/30">
+          <h3 class="text-sm font-bold text-indigo-400 mb-2">For the Institution</h3>
+          <ul class="text-xs text-gray-300 space-y-1.5">
+            <li>✓ Eliminates manual registers & printing paper waste</li>
+            <li>✓ Saves ₹2.13 Lakhs in Year 1 alone</li>
+            <li>✓ Full technical support and on-campus developers</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- THE CALL TO ACTION DECISION PANEL -->
+      <div class="bg-gray-900 border-2 border-emerald-500/40 p-5 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div>
+          <h4 class="text-base font-bold text-white">Recommended Executive Action Today:</h4>
+          <p class="text-xs text-gray-400 mt-1">
+            Approval to initiate a <strong>30-Day Risk-Free Pilot</strong> for one department (400 students) with the sanctioned ₹75,000 budget (₹45k development + ₹25k 1-year database SLA + ₹5k stabilization reserve).
+          </p>
+        </div>
+        <div class="flex items-center gap-3 flex-shrink-0">
+          <button onclick="demoToast('Pilot Proposal Approved! Scheduling onboarding meeting...')" class="px-4 py-2.5 rounded-xl bg-emerald-500 text-gray-950 font-black text-xs hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/20">
+            ✓ Approve 30-Day Pilot
+          </button>
+          <button onclick="demoToast('Changes recorded. Modifying pilot parameters...')" class="px-3 py-2.5 rounded-xl bg-gray-800 text-gray-300 text-xs font-bold hover:bg-gray-700 transition">
+            ↺ Request Revisions
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM NAVIGATION CONTROLS -->
+  <footer class="fixed bottom-0 left-0 right-0 h-12 bg-gray-950/80 border-t border-gray-800/80 px-6 md:px-8 flex items-center justify-between text-xs z-50">
+    <button id="prev-btn" class="text-gray-400 hover:text-white flex items-center gap-1 font-medium transition px-2 py-1 rounded hover:bg-gray-800">
+      ◀ Previous
+    </button>
+
+    <!-- Slide Dots (20 Dots) -->
+    <div class="flex items-center gap-1.5 overflow-x-auto max-w-[50vw] py-1" id="dots-container"></div>
+
+    <button id="next-btn" class="text-emerald-400 hover:text-emerald-300 flex items-center gap-1 font-bold transition px-3 py-1 rounded hover:bg-emerald-500/10">
+      Next ▶
+    </button>
+  </footer>
+
+  <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+
+  <script>
+    // NAVIGATION STATE (ALL 20 SLIDES ACTIVE)
+    let currentSlide = 1;
+    const slides = document.querySelectorAll('.slide[data-slide]');
+    const totalSlides = slides.length; // 20 slides
+    const currentNumEl = document.getElementById('current-slide-num');
+    const totalNumEl = document.getElementById('total-slides-num');
+    const dotsContainer = document.getElementById('dots-container');
+
+    totalNumEl.textContent = totalSlides;
+
+    // Create 20 Dots
+    for(let i = 1; i <= totalSlides; i++) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Go to slide ${i}`);
+      dot.className = `h-1.5 rounded-full transition-all flex-shrink-0 ${i === 1 ? 'w-5 bg-emerald-400' : 'w-2 bg-gray-700 hover:bg-gray-500'}`;
+      dot.onclick = () => goToSlide(i);
+      dotsContainer.appendChild(dot);
+    }
+
+    function updateSlide() {
+      slides.forEach(slide => {
+        slide.classList.remove('active');
+        if(parseInt(slide.getAttribute('data-slide')) === currentSlide) {
+          slide.classList.add('active');
+        }
+      });
+
+      currentNumEl.textContent = currentSlide;
+      document.getElementById('prev-btn').disabled = currentSlide === 1;
+      document.getElementById('next-btn').disabled = currentSlide === totalSlides;
+      document.getElementById('prev-btn').classList.toggle('opacity-40', currentSlide === 1);
+      document.getElementById('next-btn').classList.toggle('opacity-40', currentSlide === totalSlides);
+
+      // Update dots
+      const dots = dotsContainer.children;
+      for(let i = 0; i < dots.length; i++) {
+        if(i === currentSlide - 1) {
+          dots[i].className = 'w-5 h-1.5 rounded-full bg-emerald-400 transition-all flex-shrink-0';
+          dots[i].setAttribute('aria-current', 'true');
+        } else {
+          dots[i].className = 'w-2 h-1.5 rounded-full bg-gray-700 hover:bg-gray-500 transition-all flex-shrink-0';
+          dots[i].removeAttribute('aria-current');
+        }
+      }
+    }
+
+    function goToSlide(n) {
+      if(n >= 1 && n <= totalSlides) {
+        currentSlide = n;
+        updateSlide();
+      }
+    }
+
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      if(currentSlide > 1) {
+        currentSlide--;
+        updateSlide();
+      }
+    });
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+      if(currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlide();
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        if(currentSlide < totalSlides) {
+          currentSlide++;
+          updateSlide();
+        }
+      } else if (e.key === 'ArrowLeft') {
+        if(currentSlide > 1) {
+          currentSlide--;
+          updateSlide();
+        }
+      }
+    });
+
+    function previewNoticeModal() {
+      document.getElementById('notice-modal')?.remove();
+
+      const modal = document.createElement('div');
+      modal.id = 'notice-modal';
+      modal.className = 'fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4';
+      modal.innerHTML = `
+        <div class="overview-dialog w-full max-w-lg max-h-[90vh] overflow-y-auto border border-emerald-500/30 bg-gray-950 p-5 text-left shadow-2xl" role="dialog" aria-modal="true" aria-labelledby="notice-modal-title">
+          <div class="flex items-start justify-between gap-4 border-b border-gray-800 pb-3">
+            <div>
+              <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400">Official Notice Preview</div>
+              <h3 id="notice-modal-title" class="mt-1 text-lg font-bold text-white">Attendance Defaulter List</h3>
+            </div>
+            <button type="button" data-close-notice class="rounded-lg px-2 py-1 text-xl leading-none text-gray-400 hover:bg-gray-800 hover:text-white" aria-label="Close notice preview">×</button>
+          </div>
+          <div class="space-y-3 py-4 text-xs text-gray-300">
+            <p><strong class="text-white">Department:</strong> Computer & IT Engineering</p>
+            <p><strong class="text-white">Compliance threshold:</strong> 75% minimum attendance</p>
+            <div class="overflow-hidden rounded-lg border border-gray-800">
+              <div class="grid grid-cols-3 gap-2 bg-gray-900 px-3 py-2 font-bold text-gray-400"><span>Roll No.</span><span>Student</span><span>Attendance</span></div>
+              <div class="grid grid-cols-3 gap-2 border-t border-gray-800 px-3 py-2"><span>102</span><span>Student A</span><span class="text-rose-400">68%</span></div>
+              <div class="grid grid-cols-3 gap-2 border-t border-gray-800 px-3 py-2"><span>118</span><span>Student B</span><span class="text-rose-400">71%</span></div>
+              <div class="grid grid-cols-3 gap-2 border-t border-gray-800 px-3 py-2"><span>124</span><span>Student C</span><span class="text-rose-400">73%</span></div>
+            </div>
+          </div>
+          <div class="flex justify-end gap-2 border-t border-gray-800 pt-3">
+            <button type="button" data-close-notice class="rounded-lg bg-gray-800 px-3 py-2 text-xs font-bold text-gray-300 hover:bg-gray-700 hover:text-white">Close</button>
+            <button type="button" onclick="demoToast('Defaulter notice export queued')" class="rounded-lg bg-emerald-500 px-3 py-2 text-xs font-bold text-gray-950 hover:bg-emerald-400">Export Preview</button>
+          </div>
+        </div>`;
+
+      document.body.appendChild(modal);
+      const closeOnEscape = event => {
+        if (event.key === 'Escape') closeModal();
+      };
+      const closeModal = () => {
+        document.removeEventListener('keydown', closeOnEscape);
+        modal.remove();
+      };
+      modal.querySelectorAll('[data-close-notice]').forEach(button => {
+        button.addEventListener('click', closeModal);
+      });
+      modal.addEventListener('click', event => {
+        if (event.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', closeOnEscape);
+    }
+
+    function demoToast(msg) {
+      const stack = document.getElementById('toast-stack');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = msg;
+      stack.appendChild(toast);
+      window.setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(6px)';
+        toast.style.transition = 'opacity .2s ease, transform .2s ease';
+        window.setTimeout(() => toast.remove(), 200);
+      }, 3000);
+    }
+
+    updateSlide();
+  </script>
+</body>
+</html>
